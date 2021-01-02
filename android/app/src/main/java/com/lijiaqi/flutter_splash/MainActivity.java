@@ -59,7 +59,36 @@ public class MainActivity extends FlutterActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         init();
         super.onCreate(savedInstanceState);
+
+        //addView();
     }
+
+    public void addView(){
+        SVGAImageView imageView = new SVGAImageView(getApplicationContext());
+
+        SVGAParser parser = new SVGAParser(getApplicationContext());
+        parser.decodeFromAssets("angel.svga", new SVGAParser.ParseCompletion() {
+            @Override
+            public void onComplete(SVGAVideoEntity svgaVideoEntity) {
+                SVGADrawable drawable = new SVGADrawable(svgaVideoEntity);
+                imageView.setImageDrawable(drawable);
+                imageView.startAnimation();
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
+        WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
+        WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+        params.width = wm.getDefaultDisplay().getWidth();
+        params.height = wm.getDefaultDisplay().getHeight();
+        addContentView(imageView,params);
+    }
+
+
+
     final String webUrl = "https://isparta.github.io/compare-webp/image/gif_webp/webp/1.webp";
     public void init(){
         new Thread(new Runnable() {
@@ -95,7 +124,7 @@ public class MainActivity extends FlutterActivity {
                     }
                 };
                 SVGAParser parser = new SVGAParser(getApplicationContext());
-                parser.decodeFromAssets("Goddess.svga", new SVGAParser.ParseCompletion() {
+                parser.decodeFromAssets("angel.svga", new SVGAParser.ParseCompletion() {
                     @Override
                     public void onComplete(SVGAVideoEntity svgaVideoEntity) {
                         SVGADrawable drawable = new SVGADrawable(svgaVideoEntity);
