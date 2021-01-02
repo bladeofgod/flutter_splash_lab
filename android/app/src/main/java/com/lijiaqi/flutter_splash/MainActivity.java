@@ -81,7 +81,7 @@ public class MainActivity extends FlutterActivity {
                 //simpleDraweeView.setImageResource(R.drawable.lion);
 //                ImageView imageView = new ImageView(MainActivity.this);
 //                imageView.setBackgroundColor(getResources().getColor(R.color.red));
-                SVGAImageView imageView = new SVGAImageView(MainActivity.this);
+                SVGAImageView imageView = new SVGAImageView(getApplicationContext());
                 Handler handler = new Handler(){
                     @Override
                     public void handleMessage(Message msg) {
